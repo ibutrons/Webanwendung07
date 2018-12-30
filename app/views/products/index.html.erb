@@ -1,0 +1,42 @@
+
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Schau dir alle unser Produkt Katalog</h1>
+    <h3>log dich ein! oder Erstelle dir ein Neues Konto!</h3>
+    <hr>
+     <%= image_tag("logoorfebreria.jpg") %>
+    <h2>Was machen wir?</h2>
+		<br>
+		<p>
+				Wir sind eine Familie, die einzigartige Artikel mit aus Autoteilen recyceltem Werkzeuge herstellt.
+				Produkte, wie Bilderrahmen, Schmuck und andere außergewöhnliche Produkte, dazu gehören auch religiöse Artefakte, die in Kirchen in Arentinien, Bolivien und Perú ausgestellt werden. Besonders Stolz sind die Hersteller darauf, dass einige Produkte auf den Wunsch von
+				<a href ="http://www.edusalta.gov.ar/index.php/2014-05-09-13-50-01/partes-de-prensa/734-el-ministro-de-educacion-le-entrego-al-papa-francisco-cartas-de-estudiantes-saltenos-en-el-marco-del-congreso-mundial-scholas" target="_blank"> Papst Francisco an den Vatikan</a> geschickt wurden.
+		</p>
+		<br>
+		<br>
+		<br>
+		<h2>Über uns: Geschichte der Familie Soza Quintana</h2>
+		<br>
+
+		<p>
+			Die Familie Soza Quintana kommt ursprünglich aus Bolivien wanderte im Jahr 1985 aber nach Salta-Argentinien aus. Im Jahre 1986 ergab sich die Möglichkeit als Künstler der Silberschmiede zu arbeiten. Ohne viel Erfahrung, aber mit großem Interesse und angeborenem Talent für das Zeichnen, war es nicht so schwer, den Beruf zu erlernen.
+			Um die Techniken der Ziselierung und des Reliefierens (Silber, Alpacca, usw.) umzusetzen, nutzt die Familie aus Autoteilen selbst hergestellte Werkzeuge.
+			Alle Produkte sind Unikate, die von der Familie Soza Quintana (2 Männer und 7 Frauen) angefertigt wurden. Jeder arbeitet auf seinem Spezialgebiet, zum Beispiel das Herstellen von Rahmen und Spiegeln, so wie Büroartikel oder religiösen Artefakten.
+			Jedes Mitglied der Familie erlernte mit der Zeit das Handwerk. Inzwischen haben sie schon mehr als 30 Jahre Erfahrung im Geschäft der Gold- und Silberschmiede und Juwelierarbeit. In Argentinien sind die Produkte der Familie Soza Quintana sehr bekannt und geschätzt. Diese Webseite soll Ihnen die Schönheit und Einzigartigkeit der Produkte näher bringen und die Möglichkeit bieten die Vielfältigkeit der Silberschmiedekunst aus Südamerika kennenzulernen.
+		</p>
+    <p><%= link_to "Log dich ein", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+    <p> or </p>
+    <p><%= link_to "Neues Konto", new_user_session_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+<% end %>
+<h1>Products</h1>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag product.image.url(:medium), class: 'image'), product %>
+      </div>
+    </div>
+  <% end %>
+</div>

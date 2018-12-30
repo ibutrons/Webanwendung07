@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @product.image.url(:medium) %>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Name_of_Product:</strong></td>
+                <td><%= @product.Name_of_Product %></td>
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= @product.description %></td>
+              </tr>
+            </tbody>
+          </table>
+         <%= link_to "Bewerte unser Product!", new_product_review_path(@product) %>
+        </div>
+      </div>
+
+      <div class="col-md-7 col-md-offset-1">
+        <h2><strong>Guck alle die Kommentare und Bewertungen</strong></h2>
+        <h1 class="review_title"><%= @product.Name_of_Product %></h1>
+        <% if @reviews.blank? %>
+          <h3>Noch keine Kommentare, würdest du die erste einschreiben??</h3>
+          <%= link_to "Write Review", new_product_review_path(@product), class: "btn btn-danger" %>
+        <% else %>
+          <% @reviews.order(created_at: :desc).each do |review| %>
+            <div class="reviews">
+                <h5>
+                  <strong><%= link_to review.user.name %> </strong>
+                    wrote
+                  <small><%= time_ago_in_words(review.created_at)%> ago</small>
+                </h5>
+                  <strong><p><%= review.comment %></p></strong>
+                  <strong><p><%= review.rating %></p></strong>
+              <hr>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
